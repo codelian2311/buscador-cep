@@ -3,47 +3,133 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Buscador de CEP</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css?v=4">
+    <meta
+        name="description"
+        content="Consulte CEPs de ruas de Vera Cruz do Oeste, Paraná."
+    >
+
+    <title>CEP Vera Cruz</title>
+
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
 
-    <main class="container">
+    <header class="cabecalho">
 
-        <h1>Buscador de CEP</h1>
+        <div class="cabecalho-conteudo">
 
-        <p>
-            Digite o nome da sua rua para encontrar o CEP.
-        </p>
+            <a class="marca" href="./">
+                <span class="marca-simbolo">VC</span>
 
-        <form id="formulario-busca">
+                <span class="marca-texto">
+                    <strong>CEP Vera Cruz</strong>
+                    <small>Consulta de endereços</small>
+                </span>
+            </a>
 
-            <label for="campo-rua">
-                Nome da rua
-            </label>
+            <span class="localizacao">
+                Vera Cruz do Oeste — PR
+            </span>
 
-            <input
-                type="text"
-                id="campo-rua"
-                placeholder="Exemplo: Rui Barbosa"
-                required
-            >
+        </div>
 
-            <button type="submit">
-                Buscar CEP
-            </button>
+    </header>
 
-        </form>
+    <main class="pagina">
 
-        <section id="resultado">
-            <!-- O resultado da pesquisa aparecerá aqui -->
+        <section class="apresentacao">
+
+            <p class="categoria">
+                Serviço de consulta
+            </p>
+
+            <h1>
+                Encontre o CEP da sua rua
+            </h1>
+
+            <p class="descricao">
+                Consulte endereços de Vera Cruz do Oeste
+                de forma rápida e gratuita.
+            </p>
+
         </section>
 
-        <footer class="rodape">
+        <section class="painel">
+
+            <form id="formulario-busca">
+
+                <label for="campo-rua">
+                    Nome da rua
+                </label>
+
+                <div class="campo-grupo">
+
+                    <input
+                        type="text"
+                        id="campo-rua"
+                        name="rua"
+                        placeholder="Ex.: Rui Barbosa"
+                        autocomplete="street-address"
+                        minlength="3"
+                        required
+                    >
+
+                    <button type="submit">
+                        Buscar CEP
+                    </button>
+
+                </div>
+
+                <p class="campo-ajuda">
+                    Digite pelo menos três letras do nome da rua.
+                </p>
+
+            </form>
+
+            <section
+                id="resultado"
+                aria-live="polite"
+            >
+                <!-- O resultado será inserido pelo JavaScript -->
+            </section>
+
+        </section>
+
+        <section class="informacoes">
+
+            <div>
+                <h2>Como consultar</h2>
+
+                <p>
+                    Informe somente o nome da rua.
+                    A cidade e o estado já estão definidos.
+                </p>
+            </div>
+
+            <div>
+                <h2>Fonte dos dados</h2>
+
+                <p>
+                    As informações apresentadas são
+                    consultadas pelo serviço ViaCEP.
+                </p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+
+        <div class="rodape-conteudo">
+
             <p>
                 Desenvolvido por
                 <a
@@ -54,7 +140,14 @@
                     CodeLian
                 </a>
             </p>
-    </main>
+
+            <p>
+                Projeto independente, sem vínculo com órgãos públicos.
+            </p>
+
+        </div>
+
+    </footer>
 
     <script src="script.js?v=3"></script>
 

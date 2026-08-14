@@ -1,217 +1,473 @@
-/* Remove os espaços automáticos dos elementos */
+/* Configuração geral */
+
+:root {
+    --azul-900: #123653;
+    --azul-700: #185b8d;
+    --azul-600: #1d6da5;
+    --azul-100: #e8f2f8;
+
+    --verde-700: #207245;
+    --verde-100: #eaf6ef;
+
+    --vermelho-700: #a43838;
+    --vermelho-100: #fbecec;
+
+    --cinza-900: #202830;
+    --cinza-700: #4c5965;
+    --cinza-500: #74808a;
+    --cinza-300: #cbd3d9;
+    --cinza-200: #dde3e7;
+    --cinza-100: #f4f6f8;
+
+    --branco: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Configura a página inteira */
+html {
+    min-height: 100%;
+}
+
 body {
     min-height: 100vh;
 
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color: var(--cinza-900);
+    background-color: var(--cinza-100);
+}
+
+
+/* Cabeçalho */
+
+.cabecalho {
+    background-color: var(--branco);
+    border-bottom: 1px solid var(--cinza-200);
+}
+
+.cabecalho-conteudo {
+    width: min(100% - 40px, 960px);
+    min-height: 76px;
+    margin: 0 auto;
+
+    display: flex;
     align-items: center;
-
-    padding: 20px;
-
-    font-family: Arial, sans-serif;
-
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e3a8a
-    );
-
-    color: #ffffff;
+    justify-content: space-between;
+    gap: 24px;
 }
 
-/* Caixa principal */
-.container {
-    width: 100%;
-    max-width: 500px;
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
 
-    padding: 40px;
-
-    background-color: #ffffff;
-    color: #1e293b;
-
-    border-radius: 16px;
-
-    box-shadow: 0 10px 30px
-        rgba(0, 0, 0, 0.3);
+    color: inherit;
+    text-decoration: none;
 }
 
-/* Título */
-h1 {
-    margin-bottom: 10px;
+.marca-simbolo {
+    width: 42px;
+    height: 42px;
 
-    color: #1d4ed8;
-    text-align: center;
+    display: grid;
+    place-items: center;
+
+    color: var(--branco);
+    background-color: var(--azul-700);
+
+    border-radius: 4px;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
-/* Texto abaixo do título */
-.container > p {
-    margin-bottom: 30px;
-
-    color: #64748b;
-    text-align: center;
-}
-
-/* Formulário */
-form {
+.marca-texto {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2px;
 }
 
-/* Nome que aparece acima do campo */
-label {
-    font-weight: bold;
+.marca-texto strong {
+    color: var(--azul-900);
+    font-size: 17px;
 }
 
-/* Campo onde a rua será digitada */
+.marca-texto small {
+    color: var(--cinza-500);
+    font-size: 12px;
+}
+
+.localizacao {
+    color: var(--cinza-700);
+    font-size: 14px;
+}
+
+
+/* Conteúdo principal */
+
+.pagina {
+    flex: 1;
+
+    width: min(100% - 40px, 960px);
+    margin: 0 auto;
+    padding: 56px 0 64px;
+}
+
+.apresentacao {
+    max-width: 650px;
+    margin-bottom: 32px;
+}
+
+.categoria {
+    margin-bottom: 10px;
+
+    color: var(--azul-700);
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.apresentacao h1 {
+    margin-bottom: 14px;
+
+    color: var(--azul-900);
+
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.descricao {
+    color: var(--cinza-700);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* Painel de pesquisa */
+
+.painel {
+    padding: 32px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--cinza-200);
+    border-radius: 8px;
+
+    box-shadow: 0 3px 12px rgba(18, 54, 83, 0.06);
+}
+
+form label {
+    display: inline-block;
+    margin-bottom: 9px;
+
+    color: var(--cinza-900);
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.campo-grupo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    gap: 12px;
+}
+
 input {
     width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
 
-    padding: 14px;
+    color: var(--cinza-900);
+    background-color: var(--branco);
 
-    font-size: 16px;
-
-    border: 2px solid #cbd5e1;
-    border-radius: 8px;
-
+    border: 1px solid var(--cinza-300);
+    border-radius: 5px;
     outline: none;
+
+    font: inherit;
 }
 
-/* Quando a pessoa clicar no campo */
+input::placeholder {
+    color: var(--cinza-500);
+}
+
 input:focus {
-    border-color: #2563eb;
+    border-color: var(--azul-600);
+    box-shadow: 0 0 0 3px var(--azul-100);
 }
 
-/* Botão */
-button {
-    margin-top: 10px;
-    padding: 14px;
+.campo-grupo button {
+    min-height: 48px;
+    padding: 0 20px;
 
-    font-size: 16px;
-    font-weight: bold;
+    color: var(--branco);
+    background-color: var(--azul-700);
 
-    color: #ffffff;
-    background-color: #2563eb;
+    border: 1px solid var(--azul-700);
+    border-radius: 5px;
 
-    border: none;
-    border-radius: 8px;
+    font: inherit;
+    font-weight: 650;
 
     cursor: pointer;
 }
 
-/* Quando o mouse estiver sobre o botão */
-button:hover {
-    background-color: #1d4ed8;
+.campo-grupo button:hover {
+    background-color: var(--azul-900);
+    border-color: var(--azul-900);
 }
 
-/* Área onde aparecerá o CEP */
-#resultado {
-    margin-top: 25px;
+.campo-grupo button:focus-visible {
+    outline: 3px solid var(--azul-100);
+    outline-offset: 2px;
 }
 
-/* Adaptação para telas pequenas */
-@media (max-width: 500px) {
-
-    .container {
-        padding: 25px;
-    }
+.campo-grupo button:disabled {
+    opacity: 0.65;
+    cursor: wait;
 }
 
-/* Resultado encontrado */
+.campo-ajuda {
+    margin-top: 9px;
+
+    color: var(--cinza-500);
+    font-size: 13px;
+}
+
+
+/* Área de resultados */
+
+#resultado:not(:empty) {
+    margin-top: 28px;
+    padding-top: 28px;
+
+    border-top: 1px solid var(--cinza-200);
+}
+
+.resultado-sucesso,
+.resultado-erro,
+.resultado-carregando {
+    padding: 22px;
+
+    border: 1px solid;
+    border-radius: 6px;
+}
+
 .resultado-sucesso {
-    padding: 20px;
-
-    background-color: #dcfce7;
-    color: #166534;
-
-    border: 1px solid #86efac;
-    border-radius: 8px;
+    color: #164d31;
+    background-color: var(--verde-100);
+    border-color: #a9d8bd;
 }
 
-.resultado-sucesso h2 {
-    margin-bottom: 12px;
+.resultado-sucesso + .resultado-sucesso {
+    margin-top: 14px;
+}
+
+.resultado-sucesso h2,
+.resultado-erro h2 {
+    margin-bottom: 14px;
+
+    font-size: 18px;
+    line-height: 1.3;
 }
 
 .resultado-sucesso p {
-    margin-top: 6px;
+    margin-top: 7px;
+    line-height: 1.5;
 }
 
-/* Rua não encontrada */
+.resultado-sucesso strong {
+    color: #123e28;
+}
+
 .resultado-erro {
-    padding: 20px;
-
-    background-color: #fee2e2;
-    color: #991b1b;
-
-    border: 1px solid #fca5a5;
-    border-radius: 8px;
+    color: var(--vermelho-700);
+    background-color: var(--vermelho-100);
+    border-color: #ebbbbb;
 }
 
-.resultado-erro h2 {
-    margin-bottom: 12px;
+.resultado-erro p {
+    line-height: 1.5;
+}
+
+.resultado-carregando {
+    color: var(--azul-900);
+    background-color: var(--azul-100);
+    border-color: #b7d4e6;
+}
+
+.resultado-carregando p {
+    margin-top: 7px;
+
+    color: var(--cinza-700);
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .botao-copiar {
-    width: 100%;
+    margin-top: 18px;
+    padding: 9px 14px;
 
-    margin-top: 15px;
-    padding: 10px;
+    color: var(--verde-700);
+    background-color: var(--branco);
 
-    color: #ffffff;
-    background-color: #15803d;
+    border: 1px solid #82bd9c;
+    border-radius: 4px;
 
-    border: none;
-    border-radius: 6px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
 
     cursor: pointer;
 }
 
 .botao-copiar:hover {
-    background-color: #166534;
+    color: var(--branco);
+    background-color: var(--verde-700);
+    border-color: var(--verde-700);
 }
 
-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+.botao-copiar:focus-visible {
+    outline: 3px solid #c9ead7;
+    outline-offset: 2px;
 }
 
-.resultado-carregando p {
-    margin-top: 8px;
+
+/* Informações abaixo da pesquisa */
+
+.informacoes {
+    margin-top: 28px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.informacoes div {
+    padding: 22px;
+
+    background-color: var(--branco);
+
+    border: 1px solid var(--cinza-200);
+    border-radius: 6px;
+}
+
+.informacoes h2 {
+    margin-bottom: 8px;
+
+    color: var(--azul-900);
+    font-size: 16px;
+}
+
+.informacoes p {
+    color: var(--cinza-700);
     font-size: 14px;
-}button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+    line-height: 1.6;
 }
 
-.resultado-carregando p {
-    margin-top: 8px;
-    font-size: 14px;
-}
+
+/* Rodapé */
 
 .rodape {
-    margin-top: 30px;
-    padding-top: 20px;
+    background-color: var(--branco);
+    border-top: 1px solid var(--cinza-200);
+}
 
-    border-top: 1px solid #e2e8f0;
+.rodape-conteudo {
+    width: min(100% - 40px, 960px);
+    min-height: 74px;
+    margin: 0 auto;
 
-    text-align: center;
-    font-size: 14px;
-    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    color: var(--cinza-500);
+    font-size: 13px;
 }
 
 .rodape a {
-    color: #2563eb;
-    font-weight: bold;
+    color: var(--azul-700);
+    font-weight: 650;
     text-decoration: none;
 }
 
 .rodape a:hover {
     text-decoration: underline;
+}
+
+
+/* Celulares */
+
+@media (max-width: 650px) {
+
+    .cabecalho-conteudo {
+        min-height: 68px;
+    }
+
+    .localizacao {
+        display: none;
+    }
+
+    .pagina {
+        padding: 38px 0 46px;
+    }
+
+    .apresentacao {
+        margin-bottom: 24px;
+    }
+
+    .descricao {
+        font-size: 16px;
+    }
+
+    .painel {
+        padding: 22px;
+    }
+
+    .campo-grupo {
+        grid-template-columns: 1fr;
+    }
+
+    .informacoes {
+        grid-template-columns: 1fr;
+    }
+
+    .rodape-conteudo {
+        padding: 20px 0;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .cabecalho-conteudo,
+    .pagina,
+    .rodape-conteudo {
+        width: min(100% - 28px, 960px);
+    }
+
+    .painel {
+        padding: 18px;
+    }
 }
