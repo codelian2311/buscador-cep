@@ -70,32 +70,35 @@ formulario.addEventListener("submit", async function (evento) {
             return;
         }
 
-        resultado.innerHTML = enderecos
-            .map(function (endereco) {
+        const quantidade = enderecos.length;
 
-                return `
-                    <div class="resultado-sucesso">
-                        <h2>Endereço encontrado</h2>
+const textoQuantidade = quantidade === 1
+    ? "1 endereço encontrado"
+    : `${quantidade} endereços encontrados`;
 
-                        <p>
-                            <strong>CEP:</strong>
-                            ${endereco.cep}
-                        </p>
+resultado.innerHTML = `
+    <p class="resultado-resumo">
+        ${textoQuantidade}
+    </p>
 
-                        <p>
-                            <strong>Rua:</strong>
-                            ${endereco.logradouro}
-                        </p>
+    <div class="lista-enderecos">
 
-                        <p>
-                            <strong>Bairro:</strong>
-                            ${endereco.bairro || "Não informado"}
-                        </p>
+        ${enderecos.map(function (endereco) {
 
-                        <p>
-                            <strong>Cidade:</strong>
-                            ${endereco.localidade} - ${endereco.uf}
-                        </p>
+            return `
+                <article class="resultado-sucesso">
+
+                    <header class="resultado-cabecalho">
+
+                        <div>
+                            <span class="resultado-rotulo">
+                                CEP
+                            </span>
+
+                            <strong class="resultado-cep">
+                                ${endereco.cep}
+                            </strong>
+                        </div>
 
                         <button
                             type="button"
@@ -104,10 +107,44 @@ formulario.addEventListener("submit", async function (evento) {
                         >
                             Copiar CEP
                         </button>
-                    </div>
-                `;
-            })
-            .join("");
+
+                    </header>
+
+                    <dl class="resultado-dados">
+
+                        <div>
+                            <dt>Logradouro</dt>
+
+                            <dd>
+                                ${endereco.logradouro || "Não informado"}
+                            </dd>
+                        </div>
+
+                        <div>
+                            <dt>Bairro</dt>
+
+                            <dd>
+                                ${endereco.bairro || "Não informado"}
+                            </dd>
+                        </div>
+
+                        <div>
+                            <dt>Município</dt>
+
+                            <dd>
+                                ${endereco.localidade} — ${endereco.uf}
+                            </dd>
+                        </div>
+
+                    </dl>
+
+                </article>
+            `;
+
+        }).join("")}
+
+    </div>
+`;
 
     } catch (erro) {
 
