@@ -2,6 +2,10 @@
 
 Aplicação full-stack desenvolvida para pesquisar CEPs pelo nome das ruas de Vera Cruz do Oeste, Paraná.
 
+## Demonstração
+
+![Demonstração do CEP Vera Cruz](docs/assets/preview.png)
+
 ## Acessar o projeto
 
 - Site: https://codelian2311.github.io/buscador-cep/
