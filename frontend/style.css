@@ -1,0 +1,159 @@
+/* Remove os espaços automáticos dos elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configura a página inteira */
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a
+    );
+
+    color: #ffffff;
+}
+
+/* Caixa principal */
+.container {
+    width: 100%;
+    max-width: 500px;
+
+    padding: 40px;
+
+    background-color: #ffffff;
+    color: #1e293b;
+
+    border-radius: 16px;
+
+    box-shadow: 0 10px 30px
+        rgba(0, 0, 0, 0.3);
+}
+
+/* Título */
+h1 {
+    margin-bottom: 10px;
+
+    color: #1d4ed8;
+    text-align: center;
+}
+
+/* Texto abaixo do título */
+.container > p {
+    margin-bottom: 30px;
+
+    color: #64748b;
+    text-align: center;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Nome que aparece acima do campo */
+label {
+    font-weight: bold;
+}
+
+/* Campo onde a rua será digitada */
+input {
+    width: 100%;
+
+    padding: 14px;
+
+    font-size: 16px;
+
+    border: 2px solid #cbd5e1;
+    border-radius: 8px;
+
+    outline: none;
+}
+
+/* Quando a pessoa clicar no campo */
+input:focus {
+    border-color: #2563eb;
+}
+
+/* Botão */
+button {
+    margin-top: 10px;
+    padding: 14px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #ffffff;
+    background-color: #2563eb;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+/* Quando o mouse estiver sobre o botão */
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Área onde aparecerá o CEP */
+#resultado {
+    margin-top: 25px;
+}
+
+/* Adaptação para telas pequenas */
+@media (max-width: 500px) {
+
+    .container {
+        padding: 25px;
+    }
+}
+
+/* Resultado encontrado */
+.resultado-sucesso {
+    padding: 20px;
+
+    background-color: #dcfce7;
+    color: #166534;
+
+    border: 1px solid #86efac;
+    border-radius: 8px;
+}
+
+.resultado-sucesso h2 {
+    margin-bottom: 12px;
+}
+
+.resultado-sucesso p {
+    margin-top: 6px;
+}
+
+/* Rua não encontrada */
+.resultado-erro {
+    padding: 20px;
+
+    background-color: #fee2e2;
+    color: #991b1b;
+
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+}
+
+.resultado-erro h2 {
+    margin-bottom: 12px;
+}

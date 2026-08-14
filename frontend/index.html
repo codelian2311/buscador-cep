@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buscador de CEP</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <h1>Buscador de CEP</h1>
+
+        <p>
+            Digite o nome da sua rua para encontrar o CEP.
+        </p>
+
+        <form id="formulario-busca">
+
+            <label for="campo-rua">
+                Nome da rua
+            </label>
+
+            <input
+                type="text"
+                id="campo-rua"
+                placeholder="Exemplo: Rui Barbosa"
+                required
+            >
+
+            <button type="submit">
+                Buscar CEP
+            </button>
+
+        </form>
+
+        <section id="resultado">
+            <!-- O resultado da pesquisa aparecerá aqui -->
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
