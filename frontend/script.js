@@ -1,77 +1,106 @@
-// Pegando os elementos do HTML
 const formulario = document.getElementById("formulario-busca");
 const campoRua = document.getElementById("campo-rua");
 const resultado = document.getElementById("resultado");
 
-// Dados temporários para testar o site
-const enderecos = [
-    {
-        rua: "Rui Barbosa",
-        cep: "85845-000"
-    },
-    {
-        rua: "Afonso Pena",
-        cep: "85845-064"
-    },
-    {
-        rua: "Heiji Sakai",
-        cep: "85845-055"
-    },
-    {
-        rua: "Jose Bianchini",
-        cep: "85845-037"
-    },
-    {
-        rua: "Duque de Caxias",
-        cep: "85845-076"
-    }
-];
+formulario.addEventListener("submit", async function (evento) {
 
-// Esse código será executado quando o formulário for enviado
-formulario.addEventListener("submit", function (evento) {
-
-    // Impede a página de atualizar
     evento.preventDefault();
 
-    // Pega o que a pessoa digitou
     const ruaDigitada = campoRua.value.trim();
 
-    // Procura a rua dentro da lista
-    const enderecoEncontrado = enderecos.find(function (endereco) {
-
-        return endereco.rua.toLowerCase()
-            === ruaDigitada.toLowerCase();
-    });
-
-    // Verifica se encontrou
-    if (enderecoEncontrado) {
-
-        resultado.innerHTML = `
-            <div class="resultado-sucesso">
-                <h2>Endereço encontrado</h2>
-
-                <p>
-                    <strong>Rua:</strong>
-                    ${enderecoEncontrado.rua}
-                </p>
-
-                <p>
-                    <strong>CEP:</strong>
-                    ${enderecoEncontrado.cep}
-                </p>
-            </div>
-        `;
-
-    } else {
+    if (ruaDigitada.length < 3) {
 
         resultado.innerHTML = `
             <div class="resultado-erro">
-                <h2>Rua não encontrada</h2>
+                <h2>Nome muito curto</h2>
 
                 <p>
-                    Verifique o nome informado e tente novamente.
+                    Digite pelo menos 3 letras.
                 </p>
             </div>
         `;
+
+        return;
+    }
+
+    resultado.innerHTML = `
+        <div class="resultado-carregando">
+            Pesquisando endereço...
+        </div>
+    `;
+
+    try {
+
+        const ruaPreparada = encodeURIComponent(ruaDigitada);
+
+        const resposta = await fetch(
+            `http://localhost:8080/api/cep?rua=${ruaPreparada}`
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível consultar o servidor.");
+        }
+
+        const enderecos = await resposta.json();
+
+        if (enderecos.length === 0) {
+
+            resultado.innerHTML = `
+                <div class="resultado-erro">
+                    <h2>Rua não encontrada</h2>
+
+                    <p>
+                        Verifique o nome informado e tente novamente.
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+        resultado.innerHTML = enderecos
+            .map(function (endereco) {
+
+                return `
+                    <div class="resultado-sucesso">
+                        <h2>Endereço encontrado</h2>
+
+                        <p>
+                            <strong>CEP:</strong>
+                            ${endereco.cep}
+                        </p>
+
+                        <p>
+                            <strong>Rua:</strong>
+                            ${endereco.logradouro}
+                        </p>
+
+                        <p>
+                            <strong>Bairro:</strong>
+                            ${endereco.bairro || "Não informado"}
+                        </p>
+
+                        <p>
+                            <strong>Cidade:</strong>
+                            ${endereco.localidade} - ${endereco.uf}
+                        </p>
+                    </div>
+                `;
+            })
+            .join("");
+
+    } catch (erro) {
+
+        resultado.innerHTML = `
+            <div class="resultado-erro">
+                <h2>Erro de conexão</h2>
+
+                <p>
+                    Não foi possível conectar ao servidor.
+                </p>
+            </div>
+        `;
+
+        console.error(erro);
     }
 });
