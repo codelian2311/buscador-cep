@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+    "https://codelian2311.github.io",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500"
+})
 @RestController
 public class CepController {
 
