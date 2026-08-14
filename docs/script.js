@@ -86,6 +86,14 @@ formulario.addEventListener("submit", async function (evento) {
                             <strong>Cidade:</strong>
                             ${endereco.localidade} - ${endereco.uf}
                         </p>
+
+                        <button
+                            type="button"
+                            class="botao-copiar"
+                            data-cep="${endereco.cep}"
+                        >
+                            Copiar CEP
+                        </button>
                     </div>
                 `;
             })
@@ -104,5 +112,32 @@ formulario.addEventListener("submit", async function (evento) {
         `;
 
         console.error(erro);
+    }
+});
+
+resultado.addEventListener("click", async function (evento) {
+
+    if (!evento.target.classList.contains("botao-copiar")) {
+        return;
+    }
+
+    const botao = evento.target;
+    const cep = botao.dataset.cep;
+
+    try {
+
+        await navigator.clipboard.writeText(cep);
+
+        botao.textContent = "CEP copiado!";
+
+        setTimeout(function () {
+            botao.textContent = "Copiar CEP";
+        }, 2000);
+
+    } catch (erro) {
+
+        console.error("Não foi possível copiar o CEP.", erro);
+
+        botao.textContent = "Erro ao copiar";
     }
 });
