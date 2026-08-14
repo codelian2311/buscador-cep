@@ -2,6 +2,8 @@ const formulario = document.getElementById("formulario-busca");
 const campoRua = document.getElementById("campo-rua");
 const resultado = document.getElementById("resultado");
 
+const URL_API = "https://buscador-cep-api.onrender.com";
+
 formulario.addEventListener("submit", async function (evento) {
 
     evento.preventDefault();
@@ -34,7 +36,7 @@ formulario.addEventListener("submit", async function (evento) {
         const ruaPreparada = encodeURIComponent(ruaDigitada);
 
         const resposta = await fetch(
-            `http://localhost:8080/api/cep?rua=${ruaPreparada}`
+            `${URL_API}/api/cep?rua=${ruaPreparada}`
         );
 
         if (!resposta.ok) {
