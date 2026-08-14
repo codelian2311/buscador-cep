@@ -1,6 +1,9 @@
 const formulario = document.getElementById("formulario-busca");
 const campoRua = document.getElementById("campo-rua");
 const resultado = document.getElementById("resultado");
+const botaoBuscar = formulario.querySelector(
+    "button[type='submit']"
+);
 
 const URL_API = "https://buscador-cep-api.onrender.com";
 
@@ -25,9 +28,16 @@ formulario.addEventListener("submit", async function (evento) {
         return;
     }
 
+    botaoBuscar.disabled = true;
+    botaoBuscar.textContent = "Buscando...";
+
     resultado.innerHTML = `
         <div class="resultado-carregando">
-            Pesquisando endereço...
+            <strong>Pesquisando endereço...</strong>
+
+            <p>
+                O servidor pode levar alguns segundos para iniciar.
+            </p>
         </div>
     `;
 
@@ -112,6 +122,11 @@ formulario.addEventListener("submit", async function (evento) {
         `;
 
         console.error(erro);
+
+    } finally {
+
+        botaoBuscar.disabled = false;
+        botaoBuscar.textContent = "Buscar CEP";
     }
 });
 

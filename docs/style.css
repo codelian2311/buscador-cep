@@ -176,3 +176,21 @@ button:hover {
 .botao-copiar:hover {
     background-color: #166534;
 }
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.resultado-carregando p {
+    margin-top: 8px;
+    font-size: 14px;
+}button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.resultado-carregando p {
+    margin-top: 8px;
+    font-size: 14px;
+}
